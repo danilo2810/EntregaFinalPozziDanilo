@@ -1,0 +1,34 @@
+{% extends "header.html" %}
+{% load static %}
+
+{% block Page_heading %}
+    <h1>Estas editando tu post </h1> 
+{% endblock %}
+
+{% block columna_i %}
+    <h2>Tienes {{ misPost|length }} posteos</h2>
+    {% for item in misPost %}
+    <div>
+        <a class="btn btn-outline-dark" href="{% url 'editarPost' item.id %}"> {{ item.titulo }}</a>  
+
+    </div>    
+    {% endfor %}
+{% endblock %}
+
+{% block columna_d %}
+    <h2>Editar Post</h2>
+    <a class="btn btn-danger" href="{% url 'eliminarPost' postActual.id %}"> Eliminar post</a>
+    <br>
+    <br>
+    <form action="{% url 'editarPost' postActual.id %}" method="POST" enctype="multipart/form-data">{% csrf_token %}  
+    
+        <table>
+
+            {{ form.media }}
+            {{ form.as_p }}
+
+        </table>
+        
+        <input type="submit",value="Actualizar post">
+    </form> 
+{% endblock %}

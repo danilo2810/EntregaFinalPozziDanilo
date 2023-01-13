@@ -1,0 +1,66 @@
+{% extends "header.html" %}
+{% load static %}
+
+{% block Page_heading %}
+    <h1>Disfruta el post seleccionado </h1> 
+{% endblock %}
+
+{% block intermedio %}
+    <h1>{{postActual.titulo}}</h1>
+    <div></div>
+    <h2>{{postActual.subtitulo}}</h2>
+    <div></div>
+    {{postActual.cuerpo|safe}}
+     
+    <img src="/media/{{ postActual.imagen }} " alt="" >
+{% endblock %}  
+
+{% block prepost %}     
+<h2>{{ mensaje }}</h2>             
+{% endblock %}
+
+{% block Post %}
+
+<section class="showcase">
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url(  /media/{{ todosPost.0.imagen }} )"></div>
+
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+               
+                    
+                    <h2>{{ todosPost.0.titulo }}  </h2>
+                    <div></div> 
+                    <h4>{{ todosPost.0.cuerpo|safe }}</h4>
+                    <div></div>
+                    <h6>Autor: {{ todosPost.0.autor }} </h6>        
+                    <a class="btn btn-outline-dark" href="{% url 'leerPost' todosPost.0.id %}"> ver mas ... </a>      
+                
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-lg-6 text-white showcase-img" style="background-image: url(  /media/{{ todosPost.1.imagen }} )"></div>
+            <div class="col-lg-6 my-auto showcase-text">
+                <h2>{{ todosPost.1.titulo }}  </h2>
+                <div></div> 
+                <h4>{{ todosPost.1.cuerpo|safe }}</h4>
+                <div></div>
+                <h6>Autor: {{ todosPost.1.autor }} </h6>  
+                <a class="btn btn-outline-dark" href="{% url 'leerPost' todosPost.1.id %}"> ver mas ... </a>
+                   
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url(  /media/{{ todosPost.2.imagen }} )"></div>
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                <h2>{{ todosPost.2.titulo }}  </h2>
+                <div></div> 
+                <h4>{{ todosPost.2.cuerpo|safe }}</h4>
+                <div></div>
+                <h6>Autor: {{ todosPost.2.autor }} </h6>  
+                <a class="btn btn-outline-dark" href="{% url 'leerPost' todosPost.2.id %}"> ver mas ... </a>  
+            </div>
+        </div>
+    </div>
+</section>       
+{% endblock %}

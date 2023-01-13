@@ -1,0 +1,39 @@
+
+
+
+
+{% extends "header.html" %}
+{% load static %}
+
+{% block navbar %}
+
+{% endblock %}
+
+{% block Page_heading %}
+    <h1>Editando el perfil</h1>
+{% endblock %}
+
+{% block intermedio %}
+
+<div class="container position-relative">
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <div class="text-center ">
+                {{ mensaje }}
+
+                <form action="{% url 'editarperfil' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}  
+                    <table>
+                        {{ form.as_table }}
+
+                        {{ form1.as_table }}
+                    </table>   
+                    <input type="submit",value="Guardar cambios">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+
+
+{% endblock %}

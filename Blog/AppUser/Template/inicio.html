@@ -1,0 +1,93 @@
+{% extends "header.html" %}
+{% load static %}
+{% block navbar %}
+
+
+
+{% endblock %}
+
+{% block Page_heading %}
+    <h1>Bienvenidos al blog Patagonia para el mundo! </h1>
+    <div></div>
+    
+    
+{% endblock %}
+{% block intermedio %}
+<h2>{{ mensajeIntermedio}} </h2>
+{% endblock %}
+
+
+{% block prepost %}      
+<h2>{{ mensaje }}</h2>             
+{% endblock %}
+
+{% block Post %}
+<section class="showcase">
+    <div class="container-fluid p-0">
+        <div class="row g-0">    
+            <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url(  /media/{{ todosPost.0.imagen }} )"></div>
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+
+                    <h2>{{ todosPost.0.titulo }}  </h2>
+                    <div></div> 
+                    <h4>{{ todosPost.0.subtitulo }}</h4>
+                    <div></div>
+                    <h6>Autor: {{ todosPost.0.autor }} </h6>  
+                    {% if user.is_authenticated %}      
+                    <a class="btn btn-outline-dark" href="{% url 'leerPost' todosPost.0.id %}"> ver mas ... </a>      
+                    {% else %}
+                    <a class="navbar-brand" href="{% url 'login' %}">Ingresa para continuar</a>
+                    <h6></h6>
+                    <h6>O bien....</h6>
+                    <a class="navbar-brand" href="{% url 'registro' %}">Registrate para continuar</a>
+                    {% endif %}
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-lg-6 text-white showcase-img" style="background-image: url(  /media/{{ todosPost.1.imagen }} )"></div>
+            <div class="col-lg-6 my-auto showcase-text">
+                <h2>{{ todosPost.1.titulo }}  </h2>
+                <div></div> 
+                <h4>{{ todosPost.1.subtitulo }}</h4>
+                <div></div>
+                <h6>Autor: {{ todosPost.1.autor }} </h6>  
+                {% if user.is_authenticated %}      
+                <a class="btn btn-outline-dark" href="{% url 'leerPost' todosPost.1.id %}"> ver mas ... </a>      
+                {% else %}
+                <a class="navbar-brand" href="{% url 'login' %}">Ingresa para continuar</a>
+                <h6></h6>
+                <h6>O bien....</h6>
+                <a class="navbar-brand" href="{% url 'registro' %}">Registrate para continuar</a>
+                {% endif %}   
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url(  /media/{{ todosPost.2.imagen }} )"></div>
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                <h2>{{ todosPost.2.titulo }}  </h2>
+                <div></div> 
+                <h4>{{ todosPost.2.subtitulo }}</h4>
+                <div></div>
+                <h6>Autor: {{ todosPost.2.autor }} </h6>  
+                {% if user.is_authenticated %}      
+                <a class="btn btn-outline-dark" href="{% url 'leerPost' todosPost.2.id %}"> ver mas ... </a>      
+                {% else %}
+                <a class="navbar-brand" href="{% url 'login' %}">Ingresa para continuar</a>
+                <h6></h6>
+                <h6>O bien....</h6>
+                <a class="navbar-brand" href="{% url 'registro' %}">Registrate para continuar</a>
+                {% endif %} 
+            </div>
+        </div>
+    </div>
+</section>       
+{% endblock %}
+<!-- Image Showcases-->
+     
+
+
+
+
+{% block Footer %}
+<h2>Gracias por visitar el blog esperamos que te haya gustado!!</h2>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "header.html" %}
+{% load static %}
+
+
+{% block Page_heading %}
+    <h1>Mis Posteos </h1> 
+{% endblock %}
+
+{% block columna_i %}
+    <h2>Tienes {{ misPost|length }} posteos</h2>
+    <h6>Selecciona para editar</h6>
+    {% for item in misPost %}
+    <div>
+        <a class="btn btn-outline-dark" href="{% url 'editarPost' item.id %}"> {{ item.titulo }}</a>  
+    </div>    
+    {% endfor %}
+{% endblock %}
+
+{% block columna_d %}
+    <h2>Crear un nuevo Post</h2>
+    <div></div>
+    <form action="{% url 'nuevoPost' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}  
+    
+        <table>
+
+            {{ form.media }}
+            {{ form.as_p }}
+
+        </table>
+        
+        <input type="submit",value="Cargar nuevo post">
+    </form> 
+
+
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,39 @@
+
+{% extends "header.html" %}
+{% load static %}
+
+{% block navbar %}
+
+{% endblock %}
+
+{% block Page_heading %}
+    <h1>Mi perfil</h1>
+{% endblock %}
+
+{% block columna_i %}
+
+
+<img src="{{ avatar }}" alt="" width="300" heigth="300">
+<h2>Usuario: {{ usuario.username }}</h2>
+<h2>Nombre: {{ usuario.first_name }}</h2>
+<h2>Apellido: {{ usuario.last_name }}</h2>
+<h2>Email: {{ usuario.email }}</h2>
+<h2>Pagina asociada: {{ modelo.sitio_web }}</h2>
+<h2>Descripción: {{ modelo.descripcion }}</h2>
+
+{% endblock %}
+{% block columna_d %}
+        <h3>Deseas modificar tu perfil?</h3>   
+        <br>
+        <a class="btn btn-success" href="{% url 'editarperfil' %}"> Editar perfil</a>
+        <br><br><br><br>
+
+        
+        <a class="btn btn-danger" href="{% url 'eliminarperfil' %}"> Eliminar perfil</a>
+
+{% endblock %}
+{% block prepost %}
+
+{% endblock %}
+
+

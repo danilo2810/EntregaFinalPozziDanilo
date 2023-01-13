@@ -1,0 +1,81 @@
+
+
+
+
+{% extends "header.html" %}
+{% load static %}
+
+{% block navbar %}
+
+{% endblock %}
+
+{% block Page_heading %}
+    <h1>Mensajes</h1>
+{% endblock %}
+
+{% block columna_i %}
+
+    <h4>{{ nuevo_mensaje|length }} Mensajes nuevos </h4>
+    {% for item in nuevo_mensaje %} 
+        <a class="btn btn-primary" href="{% url 'leermensaje' item.id %}"> {{ item.emisor }}</a>     
+    {% endfor %}
+
+    <h4>{{ mensajesAntiguos|length }} Mensajes leidos </h4>
+    {% for item in mensajesAntiguos %}
+    <div>
+        <a class="btn btn-success" href="{% url 'leermensaje' item.id %}"> {{ item.emisor }}</a>  
+    </div>    
+    {% endfor %}
+    <h4>{{ mensajesEnviados|length }} Mensajes enviados </h4>
+    {% for item in mensajesEnviados %}
+    <div>
+        {% if item.leido %}
+        
+            <a class="btn btn-success" href="{% url 'vermensaje' item.id %}"> {{ item.receptor }} // leido</a>
+        {% else %} 
+        
+            <a class="btn btn-primary" href="{% url 'vermensaje' item.id %}"> {{ item.receptor }} // No leido</a> 
+        {% endif %}
+    </div>    
+    {% endfor %}
+{% endblock %}
+
+{% block columna_d %}
+    
+    {% if mensajeActual %}
+        {% if request.user.username ==  mensajeActual.emisor  %}
+        <h2>Para: {{ mensajeActual.receptor }}</h2>
+        <h2>Mensaje: </h2>
+        <h3>{{ mensajeActual.cuerpo_mensaje }}</h3>
+        {% else %}
+        <h2>De: {{ mensajeActual.emisor }}</h2>
+        <h2>Mensaje: </h2>
+        <h3>{{ mensajeActual.cuerpo_mensaje }}</h3>
+        <a class="btn btn-success" href="{% url 'responderMensaje' mensajeActual.id %}"> Responder</a> 
+        {% endif %}
+    {% endif %}
+
+{% endblock %}
+
+
+
+
+
+
+{% block prepost %}
+<h2>Envia un mensaje</h2>
+{{mensaje}}
+<div></div>
+<form action="{% url 'mensajeria' %}" method="POST">{% csrf_token %}
+   
+    <table>
+
+        {{ form.as_table }}
+
+    </table>
+    
+    <input type="submit",value="Enviar">
+</form> 
+{% endblock %}
+
+

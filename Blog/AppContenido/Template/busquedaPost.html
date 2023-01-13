@@ -1,0 +1,151 @@
+{% extends "header.html" %}
+{% load static %}
+
+
+{% block Page_heading %}
+    <h1>Búsqueda de post </h1> 
+{% endblock %}
+
+{% block intermedio %}
+<h1>Buscar bloog por título</h1>
+   
+<form action="{% url 'buscarPostTitulo' %}" method="GET">
+
+    <input type="text" name="titulo" id="titulo" placeholder="Julieta">  
+    <input type="submit",value="Buscar">
+
+</form>
+
+<h2>Post encontrados ({{ postEncontrados |length }})</h2>
+
+{{mensaje}}
+    {% for item in postEncontrados %}
+    <table width="350"  bgcolor="#1E679A" align="center">
+        <tr>
+             <td><font color="#FFFFFF" face="arial, verdana, helvetica">
+             <b>{{ item.titulo }} </b>
+             </font></td>
+        </tr>
+        <tr>
+           <td bgcolor="#ffffcc">
+                <font face="arial, verdana, helvetica">
+                    {{ item.subtitulo }}
+                </font>
+           </td>
+        </tr>
+        <tr>
+            <td bgcolor="#D0D399">
+                 <font face="arial, verdana, helvetica">
+                     Autor: {{ item.autor }}
+                 </font>
+            </td>
+         </tr>
+        <tr>
+            <td bgcolor="#ffffcc">
+                 <font face="arial, verdana, helvetica">
+                     <div>Última modificaicon:</div>
+                     {{ item.fechaModificacion }}
+                 </font>
+            </td>
+         </tr>
+         <tr>
+            <td bgcolor="#ffffff">
+                 <font face="arial, verdana, helvetica">
+                    <a class="btn btn-outline-dark" href="{% url 'leerPost' item.id %}"> ver mas ... </a>  
+                 </font>
+            </td>
+         </tr>
+    </table>
+
+    {% endfor %}
+    <hr size="8px" color="black" />
+{% endblock %}
+
+
+{% block columna_i %}
+    <h2>Tienes {{ misPost|length }} posteos</h2>
+    <h6>Selecciona para editar</h6>
+    {% for item in misPost %}
+
+    <table width="320" cellspacing="1" cellpadding="3" border="0" bgcolor="#1E679A">
+        <tr>
+             <td><font color="#FFFFFF" face="arial, verdana, helvetica">
+             <b><a class="btn " href="{% url 'editarPost' item.id %}"> {{ item.titulo }}</a>  </b>
+             </font></td>
+        </tr>
+        <tr>
+            <td bgcolor="#D0D399">
+                 <font face="arial, verdana, helvetica">
+                     Autor: {{ item.autor }}
+                 </font>
+            </td>
+         </tr>
+        <tr>
+            <td bgcolor="#ffffcc">
+                 <font face="arial, verdana, helvetica">
+                     <div>Última modificaicon:</div>
+                     {{ item.fechaModificacion }}
+                 </font>
+            </td>
+         </tr>
+    </table>
+
+    {% endfor %}
+   
+{% endblock %}
+
+{% block columna_d %}
+<h2>Todos los post ({{ todosPost|length }})</h2>
+{% for item in todosPost %}
+<table width="350"  bgcolor="#1E679A" align="center">
+    <tr>
+         <td><font color="#FFFFFF" face="arial, verdana, helvetica">
+         <b>{{ item.titulo }} </b>
+         </font></td>
+    </tr>
+    <tr>
+       <td bgcolor="#ffffcc">
+            <font face="arial, verdana, helvetica">
+                {{ item.subtitulo }}
+            </font>
+       </td>
+    </tr>
+    <tr>
+        <td bgcolor="#D0D399">
+             <font face="arial, verdana, helvetica">
+                 Autor: {{ item.autor }}
+             </font>
+        </td>
+     </tr>
+    <tr>
+        <td bgcolor="#ffffcc">
+             <font face="arial, verdana, helvetica">
+                 <div>Última modificaicon:</div>
+                 {{ item.fechaModificacion }}
+             </font>
+        </td>
+     </tr>
+     <tr>
+        <td bgcolor="#ffffff">
+             <font face="arial, verdana, helvetica">
+                {% if user.is_authenticated %}      
+                <a class="btn btn-outline-dark" href="{% url 'leerPost' item.id %}"> ver mas ... </a>      
+                {% else %}
+                <a class="navbar-brand" href="{% url 'login' %}">Ingresa para continuar</a>
+                <h6></h6>
+                <h6>O bien....</h6>
+                <a class="navbar-brand" href="{% url 'registro' %}">Registrate</a>
+                {% endif %}
+             </font>
+        </td>
+     </tr>
+</table>
+
+
+{% endfor %}
+{% endblock %}
+
+
+
+
+

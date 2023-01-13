@@ -1,0 +1,49 @@
+{% extends "header.html" %}
+{% load static %}
+
+
+{% block Page_heading %}
+    <h1>Acerca de mi </h1>
+    <div></div>
+
+{% endblock %}
+
+{% block intermedio %}
+<section class="showcase">
+    <div class="container-fluid p-9">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+
+                <img src="{% static 'assets/img/YO.png' %}"/>
+                    <h2>Acerca de mi</h2>
+                    <p class="lead mb-0">
+                        Hola, Soy Danilo, estoy comenzando en el mundo de la programación, actualmente trabajo para sala de control y 
+                        creo que hay muchas posibilidades de encontrar trabajos freelance para ocupar el tiempo de espera entre trabajos.
+                        Esta es la primera vez que que desarrollo algun contenido web pero espero poder darle continuidad en el tiempo y seguir aprendiendo cada vez mas.
+                        Me gusta viajar y conocer el pais donde vivo es por eso la idea del blog de viajeros donde se pueden compartir experiencias y recomendar lugares que no son muy populares pero tienen una belleza única.</p>
+                </div>
+        </div>
+
+    </div>
+</section>
+
+<h2>{{ mensajeIntermedio}} </h2>
+{% endblock %}
+
+
+{% block prepost %}      
+<h2>{{ mensaje }}</h2>             
+{% endblock %}
+
+{% block Post %}
+
+{% endblock %}
+<!-- Image Showcases-->
+     
+
+
+
+
+{% block Footer %}
+<h2>Gracias por visitar el blog esperamos que te sumes a compartir tus historias y conocer muchas otras.</h2>
+{% endblock %}

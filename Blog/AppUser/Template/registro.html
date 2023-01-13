@@ -1,0 +1,38 @@
+
+
+
+
+{% extends "header.html" %}
+{% load static %}
+
+{% block navbar %}
+
+{% endblock %}
+
+{% block Page_heading %}
+<h1>{{ mensaje }}</h1>
+    
+{% endblock %}
+
+
+
+{% block prepost %}
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <div class="text-center ">
+                <h1>Registro</h1>
+                <div></div>
+                <form action="{% url 'registro' %}" method="POST">{% csrf_token %}
+                
+                    <table>
+
+                        {{ form.as_table }}
+
+                    </table>
+                    
+                    <input type="submit",value="Enviar">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
